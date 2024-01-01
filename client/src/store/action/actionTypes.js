@@ -1,0 +1,9 @@
+//Search
+export const SEARCH_REQUEST = "SEARCH_REQUEST";
+export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
+export const SEARCH_FAILURE = "SEARCH_FAILURE";
+
+// Bookmark
+export const BOOKMARK_ITEM = 'BOOKMARK_ITEM';
+export const UNBOOKMARK_ITEM = 'UNBOOKMARK_ITEM';
+export const GET_BOOKMARK_ITEMS = 'GET_BOOKMARK_ITEMS';
