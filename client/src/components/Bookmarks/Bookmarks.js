@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  Col, Container, Row } from "react-bootstrap";
-import { card} from "../Search/index";
+import { Col, Container, Row } from "react-bootstrap";
+import { card } from "../Search/index";
 import Loading from "../Loading/Loading";
 import { Header } from "../Search";
 import NewsItem from "../NewsItem/NewsItem";
@@ -9,26 +9,26 @@ import { noFound } from "../../config/config";
 import { v4 as uuidv4 } from "uuid";
 import nullImage from "../Images/nullImage.png";
 import { getBookmarkItems, unBookmarkItem } from "../../store/action/bookmarks";
+import { IoBookmarkSharp } from "react-icons/io5";
 
 const Bookmarks = () => {
-  
   const { bookmarkItems } = useSelector((state) => state?.bookmarks);
   const { articles, loading } = useSelector((state) => state.search);
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBookmarkItems())
-  },[loading])
+    dispatch(getBookmarkItems());
+    localStorage.getItem("isButtonClicked");
+  }, [loading]);
 
-  const unBookmarkHandler = () => {
-    dispatch(unBookmarkItem());
-  }
+  const bookmarkHandle = (element) => {
+    
+      dispatch(unBookmarkItem(element));
+    
+  };
 
-  document.title =
-    bookmarkItems === 0
-      ? noFound
-      : loading;
+
+  document.title = bookmarkItems === 0 ? noFound : loading;
 
   return (
     <>
@@ -36,9 +36,7 @@ const Bookmarks = () => {
         <Loading />
       ) : (
         <>
-          <Header>
-            BOOKMARKS
-          </Header>
+          <Header>BOOKMARKS</Header>
           <Container>
             <Row>
               {bookmarkItems.map((element) => {
@@ -57,6 +55,14 @@ const Bookmarks = () => {
                           : element.urlToImage
                       }
                       urlNews={element.url}
+                    />
+                    <IoBookmarkSharp
+                      size={35}
+                      style={{color: "#005abb",
+                      fontWeight: "bold",
+                      cursor: "pointer", position: "absolute", left:"280px", bottom:"27px", }}
+                      enableBackgroundcolor="blue"
+                      onClick={() => bookmarkHandle(element)}
                     />
                   </Col>
                 );

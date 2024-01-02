@@ -18,7 +18,10 @@ const Register = () => {
     .then(result=> {console.log(result)
       navigate("/login")
     })
-    .catch(err=> console.error(err))
+    .catch(err=> {
+      console.error(err)
+      alert("Please check your information.")
+    })
   }
 
   return (
@@ -48,9 +51,7 @@ const Register = () => {
           <span></span>
           <label>Confirm Password</label>
         </div>
-
-        <div className="pass">Forgot Password?</div>
-
+        
         <input type="submit" value="Sing Up" />
 
         <div className="signup_link">

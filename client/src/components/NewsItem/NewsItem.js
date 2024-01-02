@@ -25,10 +25,21 @@ function NewsItem(props) {
   const dispatch = useDispatch();
   const { bookmarkItems } = useSelector((state) => state?.bookmarks);
 
-  const bookmarkHandle = (element) => {   
+  const bookmarkHandle = (element) => {
+    if (!isButtonClicked && element.title != bookmarkItems.title) {
       setIsButtonClicked(true);
       dispatch(bookmarkItem(element));
+      localStorage.setItem("isButtonClicked", isButtonClicked);
+    } else {
+      setIsButtonClicked(false);
+      dispatch(unBookmarkItem(element));
+      localStorage.setItem("isButtonClicked", isButtonClicked);
+    }
   };
+
+  useEffect(() => {
+    localStorage.getItem("isButtonClicked");
+  }, []);
 
   return (
     <>
@@ -42,9 +53,14 @@ function NewsItem(props) {
             <Button href={urlNews} target="_blank" style={btn}>
               Read more →
             </Button>
-            {isButtonClicked ? (
-              <IoBookmarkSharp size={35} style={bookmark} enableBackgroundcolor="blue" />
-            ) : (
+            {isButtonClicked ?(
+              <IoBookmarkSharp
+                size={35}
+                style={bookmark}
+                enableBackgroundcolor="blue"
+                onClick={() => bookmarkHandle(element)}
+              />
+            ):(
               <PiBookmarkSimpleBold
                 onClick={() => bookmarkHandle(element)}
                 style={bookmark}

@@ -16,6 +16,9 @@ const Login = () => {
         console.log(result);
         if (result.data == "Success") {
           navigate("/");
+          
+        } else {
+          alert(result.data);
         }
       })
       .catch((err) => console.error(err));
