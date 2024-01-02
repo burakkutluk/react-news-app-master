@@ -29,25 +29,38 @@ export const closeBtn = {
 export const searchForm = {
   display: "flex",
   alignItem: "center",
+  justifyContent: "center",
 };
 
 export const formInput = {
   borderRadius: "6px",
   padding: "11px",
   marginLeft: "13px",
+  display: "flex",
+  alignItem: "center",
+  justifyContent: "center",
 };
 
 export const logo = {
   width: "45px",
+  marginLeft: "40%"
 };
 
 export const btnColor = {
-  backgroundColor: "#005abb",
+  backgroundColor: "transparent",
   color: "white",
-  fontWeight: "700",
-  borderRadius: "6px",
-  padding: "8px 15px",
-  borderColor: "#323762b7",
-  fontSize: "20px",
-  marginRight: "10px",
+  border: "none",
+  display: "flex",
+  alignItem: "center",
+  justifyContent: "center",
+  position: "relative",
+  right: "15px",
 };
+
+export const icons = {
+  display:"flex",
+  alignItem: "center",
+  justifyContent: "center",
+  gap: "20px",
+  marginRight: "3%",
+}

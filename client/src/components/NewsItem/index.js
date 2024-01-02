@@ -11,6 +11,7 @@ export const img = {
   objectFit: "cover",
   width: "100%",
   height: "230px",
+  marginBottom: "15px"
 };
 
 export const btn = {

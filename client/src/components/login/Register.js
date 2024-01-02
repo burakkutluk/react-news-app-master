@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import axios from "axios"
+import {useNavigate} from "react-router-dom"
+import "./index.css"
 
 const Register = () => {
 
@@ -8,11 +10,14 @@ const Register = () => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [confirmPassword, setConfirmpassword] = useState()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3002/register', {name, email, password, confirmPassword})
-    .then(result=> console.log(result))
+    axios.post('http://localhost:3002/users/register', {name, email, password, confirmPassword})
+    .then(result=> {console.log(result)
+      navigate("/login")
+    })
     .catch(err=> console.error(err))
   }
 

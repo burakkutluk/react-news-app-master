@@ -3,7 +3,7 @@ export const details = {
   display: "flex",
   flexDirection: "column",
   position: "absolute",
-  bottom: "70px",
+  bottom: "55px",
 };
 
 export const text = {

@@ -1,11 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { IoBookmarksOutline, IoCloseOutline, IoPersonAddSharp } from "react-icons/io5";
+import {
+  IoBookmarksOutline,
+  IoCloseOutline,
+  IoPersonAddSharp,
+} from "react-icons/io5";
 import { Button, Form, FormControl, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { navbarBrand, navs } from "../../config/config";
 import logoImage from "../Images/logoImage.png";
+import { IoIosSearch } from "react-icons/io";
 import {
   btnColor,
   formInput,
@@ -15,6 +20,7 @@ import {
   navBrand,
   closeBtn,
   searchForm,
+  icons,
 } from "./index";
 
 function NavBar() {
@@ -23,7 +29,6 @@ function NavBar() {
   const navRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [isLoginPage, setIsLoginPage] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -44,7 +49,6 @@ function NavBar() {
 
   return (
     <>
-     {isLoginPage ? null : (
       <Navbar
         ref={navRef}
         style={navBar}
@@ -72,28 +76,22 @@ function NavBar() {
             onClick={() => setIsCollapsed(!isCollapsed)}
           />
         )}
+
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav style={nav}  className="mr-auto" onClick={handleNavClick}>
+          <Nav style={nav} className="mr-auto" onClick={handleNavClick}>
             {navs.map((navItem) => (
               <LinkContainer to={navItem.page} key={uuidv4()}>
                 <Nav.Link className="ml-2">{navItem.nav}</Nav.Link>
               </LinkContainer>
             ))}
-           
           </Nav>
-          
-          <div style={{display:"flex", alignItems:"center", justifyContent:"center", gap:"3vh"}}>
-            <Link to="/bookmarks"> <IoBookmarksOutline size={20} color="white" /> </Link>
-            <Link to="/login"> <IoPersonAddSharp size={23} /> </Link>
-          </div>
-          
-          
+
           <Form style={searchForm} onSubmit={handleSubmit}>
             <FormControl
               type="text"
               placeholder="Explore news..."
               style={formInput}
-              className="form-control-lg bg-dark mt-lg-2 mt-md-2 mt-sm-2 mt-xl-0 text-white shadow-sm border-dark"
+              className="form-control-lg bg-transparent mt-lg-2 mt-md-2 mt-sm-2 mt-xl-0 text-white shadow-sm border-dark"
               value={searchQuery}
               onChange={handleInputChange}
             />
@@ -103,12 +101,21 @@ function NavBar() {
               onClick={handleSubmit}
               disabled={isSearchButtonDisabled}
             >
-              Search
+              <IoIosSearch style={{display: "flex", fontSize: "35px"}} />
             </Button>
           </Form>
+
+          <div style={icons}>
+            <Link to="/bookmarks">
+              <IoBookmarksOutline size={25} color="white" />
+            </Link>
+            <Link to="/login">
+              <IoPersonAddSharp size={26} />
+            </Link>
+          </div>
+
         </Navbar.Collapse>
       </Navbar>
-     )}
     </>
   );
 }

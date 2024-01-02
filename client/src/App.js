@@ -6,8 +6,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  useParams,
-  useLocation,
 } from "react-router-dom";
 import { router } from "./config/config";
 import Search from "./components/Search/Search";
