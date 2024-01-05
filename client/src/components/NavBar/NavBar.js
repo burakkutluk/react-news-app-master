@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import { navbarBrand, navs } from "../../config/config";
 import logoImage from "../Images/logoImage.png";
 import { IoIosSearch } from "react-icons/io";
+import "../NavBar/style.css";
 import {
   btnColor,
   formInput,
@@ -47,6 +48,20 @@ function NavBar() {
 
   const isSearchButtonDisabled = searchQuery.trim() === "";
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200 ) {
+        navRef.current.classList.add("shadow");
+      }else {
+        navRef.current.classList.remove("shadow");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <Navbar
@@ -56,6 +71,7 @@ function NavBar() {
         expand="lg"
         fixed="top"
         expanded={!isCollapsed}
+        className="header"
       >
         <Navbar.Brand style={navBrand} href="/">
           <img src={logoImage} alt="Logo" style={logo} />
@@ -101,7 +117,7 @@ function NavBar() {
               onClick={handleSubmit}
               disabled={isSearchButtonDisabled}
             >
-              <IoIosSearch style={{display: "flex", fontSize: "35px"}} />
+              <IoIosSearch style={{ display: "flex", fontSize: "35px" }} />
             </Button>
           </Form>
 
@@ -113,7 +129,6 @@ function NavBar() {
               <IoPersonAddSharp size={26} />
             </Link>
           </div>
-
         </Navbar.Collapse>
       </Navbar>
     </>

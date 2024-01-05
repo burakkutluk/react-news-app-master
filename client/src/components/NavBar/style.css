@@ -1,0 +1,16 @@
+
+.navBar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    width: 100%;
+    transform: translateY(0);
+    transition: all ease 0.5s;
+}
+
+.shadow{
+    transform: translateY(-100%);
+    transition: all ease 0.5s;
+}

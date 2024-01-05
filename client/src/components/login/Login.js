@@ -14,11 +14,10 @@ const Login = () => {
       .post("http://localhost:3002/users/login", { email, password })
       .then((result) => {
         console.log(result);
-        if (result.data == "Success") {
-          navigate("/");
-          
+        if (result.data == "hello") {
+          navigate("/discover");
         } else {
-          alert(result.data);
+          alert("Please check information");
         }
       })
       .catch((err) => console.error(err));

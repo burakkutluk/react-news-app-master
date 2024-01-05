@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import bcrypt from "bcryptjs";
 
 const { Schema } = mongoose;
 
@@ -37,6 +38,22 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+
+// use bcrypt password
+userSchema.pre("save", function (next) {
+  const user = this;
+  console.log("user password 1", user.password);
+  bcrypt.hash(user.password, 10, (err, hash) => {
+    user.password = hash;
+    console.log("user password 2", user.password);
+    next();
+  });
+
+  bcrypt.hash(user.confirmPassword, 10, (err, hash) => {
+    user.confirmPassword = hash;
+    next();
+  });
+});
 
 const User = mongoose.model("User", userSchema);
 

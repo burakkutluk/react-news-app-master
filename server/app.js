@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import conn from "./db.js";
 import cors from "cors";
 import methodOverride from "method-override"
+import cookieParser from "cookie-parser";
 import userRoute from "./routes/userRoute.js";
+import { checkUser } from "./middlewares/authMiddlewares.js";
 
 dotenv.config();
 
@@ -21,13 +23,15 @@ app.use(
     methods: ["POST", "GET"],
   })
 );
+app.use(cookieParser());
 
 
 //routes
+app.use("*", checkUser);
 app.use("/users", userRoute);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/", (req,res)=>{
+  res.send("hello")
 })
 
 app.listen(port, () => {

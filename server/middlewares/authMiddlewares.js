@@ -36,7 +36,7 @@ const authenticateToken = async (req, res, next) => {
         }
       });
     } else {
-      res.redirect("/login");
+      res.redirect("/users/discovery");
     }
   } catch (error) {
     res.status(401).json({

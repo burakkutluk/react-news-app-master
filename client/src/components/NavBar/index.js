@@ -1,4 +1,4 @@
-  export const navBar = {
+export const navBar = {
   backgroundColor: "#1B262C",
   padding: "8px",
   fontSize: "15px",
