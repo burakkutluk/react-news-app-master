@@ -5,7 +5,6 @@ import cors from "cors";
 import methodOverride from "method-override"
 import cookieParser from "cookie-parser";
 import userRoute from "./routes/userRoute.js";
-import { checkUser } from "./middlewares/authMiddlewares.js";
 
 dotenv.config();
 
@@ -16,8 +15,8 @@ const port = process.env.PORT;
 
 app.use(express.static("public"));
 app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({limit:'30mb', extended: "true"}));
+app.use(express.urlencoded({limit:'30mb', extended: true }));
 app.use(
   methodOverride("_method", {
     methods: ["POST", "GET"],
@@ -27,7 +26,6 @@ app.use(cookieParser());
 
 
 //routes
-app.use("*", checkUser);
 app.use("/users", userRoute);
 
 app.get("/", (req,res)=>{

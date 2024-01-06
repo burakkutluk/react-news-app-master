@@ -21,7 +21,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "Password area is required"],
-      minlength: [4, "At least 4 characters"],
+      minlength: [6, "At least 6 characters"],
     },
     confirmPassword: {
       type: String,
@@ -49,10 +49,6 @@ userSchema.pre("save", function (next) {
     next();
   });
 
-  bcrypt.hash(user.confirmPassword, 10, (err, hash) => {
-    user.confirmPassword = hash;
-    next();
-  });
 });
 
 const User = mongoose.model("User", userSchema);
