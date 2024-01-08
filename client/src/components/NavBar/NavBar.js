@@ -48,6 +48,8 @@ function NavBar() {
 
   const isSearchButtonDisabled = searchQuery.trim() === "";
 
+  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200 ) {
@@ -62,7 +64,9 @@ function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
+
+
+  return ( 
     <>
       <Navbar
         ref={navRef}

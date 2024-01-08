@@ -9,6 +9,7 @@ import { Col, Row } from "react-bootstrap";
 import { header } from "../../config/config";
 import { endpointPath } from "../../config/api";
 import { Container, Header, card } from "./index";
+import alanBtn from "@alan-ai/alan-sdk-web";
 
 function News(props) {
   const { newscategory, country } = props;
@@ -34,6 +35,18 @@ function News(props) {
       console.error(error);
     }
   };
+
+  
+  useEffect(() => {
+    alanBtn({
+      key: process.env.REACT_APP_ALAN_KEY,
+      onCommand: ({command}) => {
+        if(command === "testCommand"){
+          alert("Test Command Executed");
+        }
+      },
+    });
+  }, []);
 
   useEffect(() => {
     updatenews();
