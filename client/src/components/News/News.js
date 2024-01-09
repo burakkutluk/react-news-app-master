@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import NullImage from "../../components/Images/nullImage.png";
@@ -10,11 +10,13 @@ import { header } from "../../config/config";
 import { endpointPath } from "../../config/api";
 import { Container, Header, card } from "./index";
 import alanBtn from "@alan-ai/alan-sdk-web";
+import { useNavigate } from 'react-router-dom';
 
 function News(props) {
   const { newscategory, country } = props;
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const capitaLize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -40,13 +42,13 @@ function News(props) {
   useEffect(() => {
     alanBtn({
       key: process.env.REACT_APP_ALAN_KEY,
-      onCommand: ({command}) => {
-        if(command === "testCommand"){
-          alert("Test Command Executed");
+      onCommand: ({command, articles}) => {
+        if(command === "newHeadlines"){
+          setArticles(articles);
         }
       },
     });
-  }, []);
+  }, [articles]);
 
   useEffect(() => {
     updatenews();
