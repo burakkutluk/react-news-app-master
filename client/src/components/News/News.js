@@ -48,7 +48,7 @@ function News(props) {
         }
       },
     });
-  }, [articles]);
+  }, []);
 
   useEffect(() => {
     updatenews();
