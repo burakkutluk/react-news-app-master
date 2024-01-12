@@ -3143,6 +3143,14 @@ babel-preset-react-app@^10.0.1:
     babel-plugin-macros "^3.1.0"
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
 
+babel-runtime@6.x.x:
+  version "6.26.0"
+  resolved "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.26.0.tgz"
+  integrity sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.11.0"
+
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
@@ -3448,6 +3456,11 @@ cliui@^7.0.2:
     strip-ansi "^6.0.0"
     wrap-ansi "^7.0.0"
 
+clj-fuzzy@^0.3.2:
+  version "0.3.3"
+  resolved "https://registry.npmjs.org/clj-fuzzy/-/clj-fuzzy-0.3.3.tgz"
+  integrity sha512-9cyh9A8+OphDZeKIG21MgyDHWDkWxTvagwvFLVjtdi6eToFENF7iDLlKwhHrnBQRSQwprKNhazG053nE/UgwfQ==
+
 clsx@^1.1.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/clsx/-/clsx-1.2.1.tgz"
@@ -3626,6 +3639,11 @@ core-js-pure@^3.23.3:
   version "3.32.2"
   resolved "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.32.2.tgz"
   integrity sha512-Y2rxThOuNywTjnX/PgA5vWM6CZ9QB9sz9oGeCixV8MqXZO70z/5SHzf9EeBrEBK0PN36DnEBBu9O/aGWzKuMZQ==
+
+core-js@^2.4.0:
+  version "2.6.12"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-2.6.12.tgz"
+  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-js@^3.19.2:
   version "3.32.2"
@@ -5789,6 +5807,14 @@ iterator.prototype@^1.1.0:
     has-symbols "^1.0.3"
     reflect.getprototypeof "^1.0.3"
 
+its-set@^1.1.5:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/its-set/-/its-set-1.2.3.tgz"
+  integrity sha512-UQc+xLLn+0a8KKRXRj3OS2kERK8G7zcayPpPULqZnPwuJ1hGWEO8+j0T5eycu7DKXYjezw3pyF8oV1fJkJxV5w==
+  dependencies:
+    babel-runtime "6.x.x"
+    lodash.get "^4.4.2"
+
 jake@^10.8.5:
   version "10.8.7"
   resolved "https://registry.npmjs.org/jake/-/jake-10.8.7.tgz"
@@ -6523,6 +6549,11 @@ lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.npmjs.org/lodash.get/-/lodash.get-4.4.2.tgz"
+  integrity sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
@@ -8166,6 +8197,11 @@ regenerate@^1.4.2:
   resolved "https://registry.npmjs.org/regenerate/-/regenerate-1.4.2.tgz"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
 
+regenerator-runtime@^0.11.0:
+  version "0.11.1"
+  resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz"
+  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
+
 regenerator-runtime@^0.13.9:
   version "0.13.11"
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz"
@@ -9721,6 +9757,15 @@ which@^2.0.1:
   integrity sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   dependencies:
     isexe "^2.0.0"
+
+words-to-numbers@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/words-to-numbers/-/words-to-numbers-1.5.1.tgz"
+  integrity sha512-uvz7zSCKmmA7o5f5zp4Z5l24RQhy6HSNu10URhNxQWv1I82RsFaZX3qD07RLFUMJsCV38oAuaca13AvhO+9yGw==
+  dependencies:
+    babel-runtime "6.x.x"
+    clj-fuzzy "^0.3.2"
+    its-set "^1.1.5"
 
 workbox-background-sync@6.6.1:
   version "6.6.1"

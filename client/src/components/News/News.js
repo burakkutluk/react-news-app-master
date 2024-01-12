@@ -11,6 +11,7 @@ import { endpointPath } from "../../config/api";
 import { Container, Header, card } from "./index";
 import alanBtn from "@alan-ai/alan-sdk-web";
 import { useNavigate } from 'react-router-dom';
+import wordsToNumbers from 'words-to-numbers';
 
 function News(props) {
   const { newscategory, country } = props;
@@ -42,9 +43,21 @@ function News(props) {
   useEffect(() => {
     alanBtn({
       key: process.env.REACT_APP_ALAN_KEY,
-      onCommand: ({command, articles}) => {
+      onCommand: ({command, articles, number}) => {
         if(command === "newHeadlines"){
           setArticles(articles);
+        }else if (command === 'open') {
+          const parsedNumber = number.length > 2 ? wordsToNumbers((number), { fuzzy: true }) : number;
+          const article = articles[parsedNumber - 1];
+
+          if (parsedNumber > articles.length) {
+            alanBtn().playText('Please try that again...');
+          } else if (article) {
+            window.open(article.url, '_blank');
+            alanBtn().playText('Opening...');
+          } else {
+            alanBtn().playText('Please try that again...');
+          }
         }
       },
     });
