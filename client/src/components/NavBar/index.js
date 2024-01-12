@@ -42,8 +42,13 @@ export const formInput = {
 };
 
 export const logo = {
-  width: "45px",
-  marginLeft: "40%"
+  width: "70px",
+  marginLeft: "50%",
+  display: "flex",
+  alignItem: "center",
+  justifyContent: "center",
+  marginBottom: "5px",
+  marginRight: "40px"
 };
 
 export const btnColor = {

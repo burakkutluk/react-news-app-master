@@ -6,8 +6,8 @@ export const noFound = "No Results Found";
 export const searching = "Searching...";
 
 export const navs = [
-  { nav: "Home", page: "/" },
-  { nav: "Discover", page: "/discover" },
+  { nav: "Home", page: "/home" },
+  { nav: "Discover", page: "/" },
   { nav: "Business", page: "/categories/business" },
   { nav: "Sports", page: "/categories/sports" },
   { nav: "Science", page: "/categories/science" },
@@ -17,8 +17,8 @@ export const navs = [
 ];
 
 export const router = [
+  { path: "/home", key: "general", category: "general", country: "us" },
   { path: "/", key: "general", category: "general", country: "us" },
-  { path: "/discover", key: "sources", country: "us", sources: "sources" },
   { path: "/categories/business", key: "business", category: "business", country: "us" },
   { path: "/categories/sports", key: "sports", category: "sports", country: "us" },
   { path: "/categories/science", key: "science", category: "science", country: "us" },
