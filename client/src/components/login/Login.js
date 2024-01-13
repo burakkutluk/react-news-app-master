@@ -48,6 +48,7 @@ const Login = () => {
           <label>Password</label>
         </div>
 
+
         <div className="pass">Forgot Password?</div>
 
         <input type="submit" value="Login" />
