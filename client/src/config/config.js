@@ -6,7 +6,7 @@ export const noFound = "No Results Found";
 export const searching = "Searching...";
 
 export const navs = [
-  { nav: "Home", page: "/home" },
+  { nav: "Home", page: "/home"  },
   { nav: "Discover", page: "/" },
   { nav: "Business", page: "/categories/business" },
   { nav: "Sports", page: "/categories/sports" },
@@ -17,7 +17,6 @@ export const navs = [
 ];
 
 export const router = [
-  { path: "/home", key: "source", channel: "BBC News" },
   { path: "/", key: "general", category: "general", country: "us" },
   { path: "/categories/business", key: "business", category: "business", country: "us" },
   { path: "/categories/sports", key: "sports", category: "sports", country: "us" },

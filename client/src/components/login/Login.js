@@ -15,7 +15,7 @@ const Login = () => {
       .then((result) => {
         console.log(result);
         if (result.status= "OK") {
-          navigate("/discover");
+          navigate("/home");
         } else {
         }
       })

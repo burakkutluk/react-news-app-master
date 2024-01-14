@@ -12,6 +12,7 @@ import Search from "./components/Search/Search";
 import Login from "./components/login/Login";
 import Register from "./components/login/Register";
 import Bookmarks from "./components/Bookmarks/Bookmarks";
+import Home from './components/Home/Home'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/login/register" element={<Register />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Router>
     </>

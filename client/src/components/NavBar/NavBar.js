@@ -23,6 +23,7 @@ import {
   searchForm,
   icons,
 } from "./index";
+import axios from "axios";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -48,7 +49,16 @@ function NavBar() {
 
   const isSearchButtonDisabled = searchQuery.trim() === "";
 
-  
+  useEffect(() => {
+    document.title = "Home - Dashboard";
+    axios
+      .get("http://localhost:3002/users/logout")
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => console.error(err));
+  });
+
 
   useEffect(() => {
     const handleScroll = () => {
