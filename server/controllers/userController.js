@@ -38,27 +38,92 @@ const createUser = async (req, res) => {
   }
 };
 
+// const loginUser = async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+
+//     const user = await User.findOne({ email });
+
+//     if (!user) {
+//       return res.status(401).json({ error: "Please check information" });
+//     }
+//     const comparePassword = await bcrypt.compare(password, user.password);
+//     if (!comparePassword) {
+//       return res.status(401).json({ error: "Password wrong" });
+//     }
+
+//     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+//       expiresIn: "1h",
+//     });
+
+//     res.status(200).json({
+//       status: "OK",
+//       token,
+//       user,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       succeded: false,
+//       error,
+//     });
+//   }
+// };
+
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
 
-    if (!user) {
-      return res.status(401).json({ error: "Please check information" });
-    }
-    const comparePassword = await bcrypt.compare(password, user.password);
-    if (!comparePassword) {
-      return res.status(401).json({ error: "Password wrong" });
-    }
+    let same = false;
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    if (user) {
+      same = await bcrypt.compare(password, user.password);
+    } else {
+      return res.status(401).json({
+        succeded: false,
+        error: "There is no such user",
+      });
+    }
 
     res.status(200).json({
-      status: "OK",
-      token,
+      succeded: true,
+      user,
+    })
+    if (same) {
+      const token = createToken(user._id);
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+
+    } else {
+      res.status(401).json({
+        succeded: false,
+        error: "Password are not matched",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
+  }
+};
+
+const createToken = (userId) => {
+  return jwt.sign({ userId }, process.env.JWT_SECRET, {
+    expiresIn: "1d",
+  });
+};
+
+//getUser
+
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById({ _id: req.params.id });
+
+      res.status(200).render("user", {
       user,
     });
   } catch (error) {
@@ -77,20 +142,6 @@ const logoutUser = (req, res) => {
   res.redirect("/");
 };
 
-//getUser
-const getUser = async (req, res) => {
-  //@ts-ignore
-  const user = await User.findById(req.user).select("-password");
-  if (!user) {
-    return res.status(404).json({
-      succeded: false,
-      error: "User not found",
-    });
-  }
-  res.status(200).json({
-    succeded: true,
-    user,
-  });
-};
+
 
 export { createUser, loginUser, logoutUser, getUser };
