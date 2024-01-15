@@ -45,19 +45,26 @@ function NavBar() {
 
   const handleNavClick = () => {
     setIsCollapsed(true);
+    window.location.reload();
   };
+  
+  const handleIconsBookmarks = () => {
+    setIsCollapsed(true);
+    navigate("/bookmarks")
+    window.location.reload()
+  };
+
+  const handleIconsLogin = () => {
+    setIsCollapsed(true);
+    navigate("/login")
+    window.location.reload()
+  };
+
+  
 
   const isSearchButtonDisabled = searchQuery.trim() === "";
 
-  useEffect(() => {
-    document.title = "Home - Dashboard";
-    axios
-      .get("http://localhost:3002/users/logout")
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => console.error(err));
-  });
+ 
 
 
   useEffect(() => {
@@ -136,12 +143,12 @@ function NavBar() {
           </Form>
 
           <div style={icons}>
-            <Link to="/bookmarks">
+            <div onClick={handleIconsBookmarks}>
               <IoBookmarksOutline size={25} color="white" />
-            </Link>
-            <Link to="/login">
-              <IoPersonAddSharp size={26} />
-            </Link>
+            </div>
+            <div onClick={handleIconsLogin}>
+              <IoPersonAddSharp size={26} color="white" />
+            </div>
           </div>
         </Navbar.Collapse>
       </Navbar>

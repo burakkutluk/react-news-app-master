@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import { card } from "../Search/index";
@@ -13,7 +13,7 @@ import { IoBookmarkSharp } from "react-icons/io5";
 
 const Bookmarks = () => {
   const { bookmarkItems } = useSelector((state) => state?.bookmarks);
-  const { articles, loading } = useSelector((state) => state.search);
+  const { loading } = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +26,6 @@ const Bookmarks = () => {
       dispatch(unBookmarkItem(element));
     
   };
-
 
   document.title = bookmarkItems === 0 ? noFound : loading;
 

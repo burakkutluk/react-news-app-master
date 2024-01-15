@@ -68,6 +68,7 @@ export const icons = {
   justifyContent: "center",
   gap: "20px",
   marginRight: "3%",
+  cursor: "pointer"
 }
 
 

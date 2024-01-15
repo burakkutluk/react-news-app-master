@@ -24,13 +24,12 @@ app.use(
 );
 app.use(cookieParser());
 
-
-//routes
-app.use("/users", userRoute);
-
 app.get("/", (req,res)=>{
   res.send("hello")
 })
+
+//routes
+app.use("/users", userRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

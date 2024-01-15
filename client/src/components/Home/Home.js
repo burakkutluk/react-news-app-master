@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 const Home = () => {
 
   useEffect(() => {
-    document.title = "Home - Dashboard";
     axios
       .get("http://localhost:3002/users/getUser")
       .then((result) => {

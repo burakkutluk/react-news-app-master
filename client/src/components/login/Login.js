@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -14,9 +14,10 @@ const Login = () => {
       .post("http://localhost:3002/users/login", { email, password })
       .then((result) => {
         console.log(result);
-        if (result.status= "OK") {
+        if ((result.status = "OK")) {
           navigate("/home");
         } else {
+          navigate("/login");
         }
       })
       .catch((err) => console.error(err));
@@ -47,7 +48,6 @@ const Login = () => {
           <span></span>
           <label>Password</label>
         </div>
-
 
         <div className="pass">Forgot Password?</div>
 

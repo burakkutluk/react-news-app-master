@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
         succeded: false,
         error: "Email already exists",
       });
-    }
+    }  
 
     const passwordHash = await bcrypt.hash(password, 12);
 
@@ -70,25 +70,17 @@ const loginUser = async (req, res) => {
 };
 
 //logout
-const logoutUser = async (req, res) => {
-  try {
-    res.cookie("token", "", { maxAge: 1 });
-    res.status(200).json({
-      succeded: true,
-      message: "Logout successfully",
-    });
-  } catch (error) {
-    res.status(500).json({
-      succeded: false,
-      error,
-    });
-  }
+const logoutUser = (req, res) => {
+  res.cookie("jwt", "", {
+    maxAge: 1,
+  });
+  res.redirect("/");
 };
 
 //getUser
 const getUser = async (req, res) => {
   //@ts-ignore
-  const user = await User.findById(req.user._id).select("-password");
+  const user = await User.findById(req.user).select("-password");
   if (!user) {
     return res.status(404).json({
       succeded: false,
