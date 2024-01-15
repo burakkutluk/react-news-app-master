@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
         succeded: false,
         error: "Email already exists",
       });
-    }  
+    }
 
     const passwordHash = await bcrypt.hash(password, 12);
 
