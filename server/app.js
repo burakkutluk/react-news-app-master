@@ -5,6 +5,7 @@ import cors from "cors";
 import methodOverride from "method-override"
 import cookieParser from "cookie-parser";
 import userRoute from "./routes/userRoute.js";
+import { checkUser } from "./middlewares/authMiddlewares.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.get("/", (req,res)=>{
 })
 
 //routes
+app.use("*", checkUser)
 app.use("/users", userRoute);
 
 app.listen(port, () => {

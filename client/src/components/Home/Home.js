@@ -5,12 +5,13 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/users/getUser")
+      .get("http://localhost:3002/users/home")
       .then((result) => {
         console.log(result);
       })
       .catch((err) => console.error(err));
-  });
+  }
+  , []);
 
   return <div>Home</div>;
 };

@@ -60,12 +60,7 @@ function NavBar() {
     window.location.reload()
   };
 
-  
-
   const isSearchButtonDisabled = searchQuery.trim() === "";
-
- 
-
 
   useEffect(() => {
     const handleScroll = () => {

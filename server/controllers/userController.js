@@ -5,36 +5,24 @@ import bcrypt from "bcryptjs";
 //Create new user
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.create(req.body);
+    res.status(201).json({ user: user._id });
+  } catch (error) {
+    let errors2 = {};
 
-    if (user) {
-      return res.status(401).json({
-        succeded: false,
-        error: "Email already exists",
+    if (error.code === 11000) {
+      errors2.email = "Email already exists";
+    }
+
+    if (error.name === "ValidationError") {
+      Object.keys(error.errors).forEach((key) => {
+        errors2[key] = error.errors[key].message;
       });
     }
 
-    const passwordHash = await bcrypt.hash(password, 12);
+    console.log(errors2);
 
-    const newUser = await User.create({
-      name,
-      email,
-      password,
-      confirmPassword,
-    });
-
-    const userToken = jwt.sign({ id: newUser.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    res.status(201).json({
-      status: "OK",
-      userToken,
-      newUser,
-    });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(400).json(errors2);
   }
 };
 
@@ -86,15 +74,16 @@ const loginUser = async (req, res) => {
       });
     }
 
-    res.status(200).json({
-      succeded: true,
-      user,
-    })
     if (same) {
       const token = createToken(user._id);
       res.cookie("jwt", token, {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
+      });
+
+      res.status(200).json({
+        succeded: true,
+        token,
       });
 
     } else {
@@ -111,6 +100,7 @@ const loginUser = async (req, res) => {
   }
 };
 
+
 const createToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "1d",
@@ -118,12 +108,11 @@ const createToken = (userId) => {
 };
 
 //getUser
-
-const getUser = async (req, res) => {
+const getAUser = async (req, res) => {
   try {
-    const user = await User.findById({ _id: req.params.id });
-
-      res.status(200).render("user", {
+    const user = await User.findById(req.params.id).select("-password");
+    res.status(200).json({
+      status: "OK",
       user,
     });
   } catch (error) {
@@ -132,6 +121,14 @@ const getUser = async (req, res) => {
       error,
     });
   }
+};
+
+//get home page
+const getHomePage = (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    user: res.locals.user,
+  });
 };
 
 //logout
@@ -144,4 +141,4 @@ const logoutUser = (req, res) => {
 
 
 
-export { createUser, loginUser, logoutUser, getUser };
+export { createUser, loginUser, logoutUser, getAUser, getHomePage };
