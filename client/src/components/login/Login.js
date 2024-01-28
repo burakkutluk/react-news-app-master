@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import login from "../Images/login.jpeg";
+import NavBar from "../NavBar/NavBar";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -33,6 +35,12 @@ const Login = () => {
   //     .catch((err) => console.error(err));
   // }
 
+  //show and hide password
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -42,7 +50,7 @@ const Login = () => {
         if ((result.status = "OK")) {
           //Add token local storage
           localStorage.setItem("token", result.data.token);
-          navigate("/home");
+          navigate("/");
         } else {
           navigate("/login");
         }
@@ -50,10 +58,23 @@ const Login = () => {
       .catch((err) => console.error(err));
   };
 
+  //hide navbar
+  useEffect(() => {
+    document.querySelector(".navbar").style.display = "none";
+  }, []);
+
+  
+
   return (
+    <>
     <div className="center">
-      <h1>Login</h1>
+      {/* image add */}
+      <div className="imgcontainer">
+        <img src={login} alt="imageLogin" className="imageLogin" />
+      </div>
       <form method="post" onSubmit={handleSubmit}>
+        <h1>Login</h1>
+
         <div className="txt_field">
           <input
             type="email"
@@ -67,16 +88,22 @@ const Login = () => {
 
         <div className="txt_field">
           <input
-            type="password"
+            type={passwordShown ? "text" : "password"}
             name="password"
             required
             onChange={(e) => setPassword(e.target.value)}
           />
+          <i
+            className={`fa fa-${
+              passwordShown ? "eye" : "eye-slash"
+            } password-icon`}
+            id="password-icon"
+            onClick={togglePasswordVisiblity}
+          ></i>
+
           <span></span>
           <label>Password</label>
         </div>
-
-        <div className="pass">Forgot Password?</div>
 
         <input type="submit" value="Login" />
 
@@ -85,6 +112,7 @@ const Login = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 
