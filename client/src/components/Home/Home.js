@@ -9,12 +9,6 @@ const Home = () => {
   useEffect(() => {
     // get token from local storage
     const token = localStorage.getItem("token");
-    // if token is not present, redirect to login page
-    if (!token) {
-      navigate("/login");
-    }else{
-      console.log(token);
-    }
   }, []);
 
   return <div>Home</div>;

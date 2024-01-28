@@ -70,7 +70,7 @@ function NavBar() {
   const handleIconsLogout = () => {
     setIsCollapsed(true);
     localStorage.removeItem("token");
-    navigate("/discover");
+    navigate("/");
     window.location.reload();
   };
 

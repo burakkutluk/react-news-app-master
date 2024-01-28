@@ -24,15 +24,27 @@ function NewsItem(props) {
   const [isButtonClicked, setIsButtonClicked] = useState();
   const dispatch = useDispatch();
   const { bookmarkItems } = useSelector((state) => state?.bookmarks);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // get token from local storage
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   const bookmarkHandle = (element) => {
-    if (!isButtonClicked && element.title != bookmarkItems.title) {
-      setIsButtonClicked(true);
-      dispatch(bookmarkItem(element));
-    } else {
-      setIsButtonClicked(false);
-      dispatch(unBookmarkItem(element));
+    if (!isLoggedIn){
+      return alert("Please login to add this news to your Book")
+    } else{
+      if (!isButtonClicked && element.title != bookmarkItems.title) {
+        setIsButtonClicked(true);
+        dispatch(bookmarkItem(element));
+      } else {
+        setIsButtonClicked(false);
+        dispatch(unBookmarkItem(element));
+      }
     }
+    
   };
 
   return (
