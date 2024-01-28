@@ -23,7 +23,7 @@ import {
   searchForm,
   icons,
 } from "./index";
-import axios from "axios";
+import { CiLogout } from "react-icons/ci";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -31,6 +31,13 @@ function NavBar() {
   const navRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // get token from local storage
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   const handleInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -47,26 +54,33 @@ function NavBar() {
     setIsCollapsed(true);
     window.location.reload();
   };
-  
+
   const handleIconsBookmarks = () => {
     setIsCollapsed(true);
-    navigate("/bookmarks")
-    window.location.reload()
+    navigate("/bookmarks");
+    window.location.reload();
   };
 
   const handleIconsLogin = () => {
     setIsCollapsed(true);
-    navigate("/login")
-    window.location.reload()
+    navigate("/login");
+    window.location.reload();
+  };
+
+  const handleIconsLogout = () => {
+    setIsCollapsed(true);
+    localStorage.removeItem("token");
+    navigate("/discover");
+    window.location.reload();
   };
 
   const isSearchButtonDisabled = searchQuery.trim() === "";
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200 ) {
+      if (window.scrollY > 200) {
         navRef.current.classList.add("shadow");
-      }else {
+      } else {
         navRef.current.classList.remove("shadow");
       }
     };
@@ -76,9 +90,7 @@ function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
-  return ( 
+  return (
     <>
       <Navbar
         ref={navRef}
@@ -137,14 +149,24 @@ function NavBar() {
             </Button>
           </Form>
 
-          <div style={icons}>
-            <div onClick={handleIconsBookmarks}>
-              <IoBookmarksOutline size={25} color="white" />
+          {isLoggedIn ? (
+            <div style={icons}>
+              <div onClick={handleIconsBookmarks}>
+                <IoBookmarksOutline size={25} color="white" />
+              </div>
+              <div style={icons}>
+                <div onClick={handleIconsLogout}>
+                  <CiLogout size={31} color="white" />
+                </div>
+              </div>
             </div>
-            <div onClick={handleIconsLogin}>
-              <IoPersonAddSharp size={26} color="white" />
+          ) : (
+            <div style={icons}>
+              <div onClick={handleIconsLogin}>
+                <IoPersonAddSharp size={26} color="white" />
+              </div>
             </div>
-          </div>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </>

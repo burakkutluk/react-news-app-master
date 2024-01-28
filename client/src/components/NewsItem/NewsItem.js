@@ -29,17 +29,11 @@ function NewsItem(props) {
     if (!isButtonClicked && element.title != bookmarkItems.title) {
       setIsButtonClicked(true);
       dispatch(bookmarkItem(element));
-      localStorage.setItem("isButtonClicked", isButtonClicked);
     } else {
       setIsButtonClicked(false);
       dispatch(unBookmarkItem(element));
-      localStorage.setItem("isButtonClicked", isButtonClicked);
     }
   };
-
-  useEffect(() => {
-    localStorage.getItem("isButtonClicked");
-  }, []);
 
   return (
     <>

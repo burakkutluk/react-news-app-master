@@ -6,7 +6,7 @@ export const noFound = "No Results Found";
 export const searching = "Searching...";
 
 export const navs = [
-  { nav: "Home", page: "/users/home"  },
+  { nav: "Home", page: "/home"  },
   { nav: "Discover", page: "/" },
   { nav: "Business", page: "/categories/business" },
   { nav: "Sports", page: "/categories/sports" },

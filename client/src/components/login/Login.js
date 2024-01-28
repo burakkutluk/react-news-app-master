@@ -7,6 +7,31 @@ const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  // // Redirect to dashboard if user is already logged in.
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:3002/users/login")
+  //     .then((result) => {
+  //       if (result.data.loggedIn === true) {
+  //         navigate("/users/home");
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   await axios
+  //     .post("http://localhost:3002/users/login", { email, password })
+  //     .then((result) => {
+  //       if (result.data.loggedIn === true) {
+  //         navigate("/users/home");
+  //       } else {
+  //         navigate("/login");
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +40,9 @@ const Login = () => {
       .then((result) => {
         console.log(result);
         if ((result.status = "OK")) {
-          navigate("/users/home");
+          //Add token local storage
+          localStorage.setItem("token", result.data.token);
+          navigate("/home");
         } else {
           navigate("/login");
         }

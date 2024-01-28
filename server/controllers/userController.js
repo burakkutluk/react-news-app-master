@@ -107,22 +107,6 @@ const createToken = (userId) => {
   });
 };
 
-//getUser
-const getAUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).select("-password");
-    res.status(200).json({
-      status: "OK",
-      user,
-    });
-  } catch (error) {
-    res.status(500).json({
-      succeded: false,
-      error,
-    });
-  }
-};
-
 //get home page
 const getHomePage = (req, res) => {
   res.status(200).json({
@@ -141,4 +125,4 @@ const logoutUser = (req, res) => {
 
 
 
-export { createUser, loginUser, logoutUser, getAUser, getHomePage };
+export { createUser, loginUser, logoutUser, getHomePage };

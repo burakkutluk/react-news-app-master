@@ -66,7 +66,7 @@ export const icons = {
   display:"flex",
   alignItem: "center",
   justifyContent: "center",
-  gap: "20px",
+  gap: "25px",
   marginRight: "3%",
   cursor: "pointer"
 }

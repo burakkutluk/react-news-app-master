@@ -18,13 +18,10 @@ const Bookmarks = () => {
 
   useEffect(() => {
     dispatch(getBookmarkItems());
-    localStorage.getItem("isButtonClicked");
   }, [loading]);
 
   const bookmarkHandle = (element) => {
-    
-      dispatch(unBookmarkItem(element));
-    
+    dispatch(unBookmarkItem(element));
   };
 
   document.title = bookmarkItems === 0 ? noFound : loading;
@@ -57,7 +54,7 @@ const Bookmarks = () => {
                     />
                     <IoBookmarkSharp
                       size={35}
-                      style={{color: "#005abb",
+                      style={{ color: "#005abb",
                       fontWeight: "bold",
                       cursor: "pointer", position: "absolute", left:"280px", bottom:"27px", }}
                       enableBackgroundcolor="blue"

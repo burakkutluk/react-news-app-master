@@ -1,17 +1,21 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    axios
-      .get("http://localhost:3002/users/home")
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => console.error(err));
-  }
-  , []);
+    // get token from local storage
+    const token = localStorage.getItem("token");
+    // if token is not present, redirect to login page
+    if (!token) {
+      navigate("/login");
+    }else{
+      console.log(token);
+    }
+  }, []);
 
   return <div>Home</div>;
 };
