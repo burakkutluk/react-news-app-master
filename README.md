@@ -1,4 +1,4 @@
-VOİCE ASSİSTANS NEWS APP
+# VOİCE ASSİSTANS NEWS APP
 
 ![Alt text](<Screenshot 2024-01-30 213253.png>)   
 
