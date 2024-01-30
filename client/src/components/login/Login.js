@@ -40,7 +40,7 @@ const Login = () => {
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -51,6 +51,7 @@ const Login = () => {
           //Add token local storage
           localStorage.setItem("token", result.data.token);
           navigate("/");
+          window.location.reload()
         } else {
           navigate("/login");
         }
@@ -58,11 +59,12 @@ const Login = () => {
       .catch((err) => console.error(err));
   };
 
+  
   //hide navbar
-  useEffect(() => {
-    document.querySelector(".navbar").style.display = "none";
-  }, []);
-
+    //hide navbar
+    useEffect(() => {
+      document.querySelector(".navbar").style.display = "none";
+    }, []);
   
 
   return (

@@ -7,6 +7,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    
     // get token from local storage
     const token = localStorage.getItem("token");
   }, []);
