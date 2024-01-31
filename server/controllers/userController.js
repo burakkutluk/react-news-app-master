@@ -26,37 +26,6 @@ const createUser = async (req, res) => {
   }
 };
 
-// const loginUser = async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-
-//     const user = await User.findOne({ email });
-
-//     if (!user) {
-//       return res.status(401).json({ error: "Please check information" });
-//     }
-//     const comparePassword = await bcrypt.compare(password, user.password);
-//     if (!comparePassword) {
-//       return res.status(401).json({ error: "Password wrong" });
-//     }
-
-//     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-//       expiresIn: "1h",
-//     });
-
-//     res.status(200).json({
-//       status: "OK",
-//       token,
-//       user,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       succeded: false,
-//       error,
-//     });
-//   }
-// };
-
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
